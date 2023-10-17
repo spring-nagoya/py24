@@ -1,0 +1,3 @@
+2023/10/18 02:14:59 [INFO] mes=DB接続完了
+2023/10/18 02:14:59 [ERROR] mes=1146 (42S02): Table 'task.users' doesn't exist
+2023/10/18 02:15:02 [INFO] mes=DB接続終了

@@ -1,16 +1,17 @@
 from repository import Repository
-
+from logger import Logger
 class Service:
-    def __init__(self):
-        self.r = Repository()
+    def __init__(self,logger):
+        self.logger = logger
+        self.r = Repository(logger)
         
     # ユーザの追加
     def CreateUser(self, name :str , password :str , email :str):
         user = ""
         try:
             user = self.r.CreateUser(name,password,email)
-        except Exception as e:
-            return None , e
+        except Exception as err:
+            return None , err
         return user , None
 
     # ユーザの単一取得
@@ -18,8 +19,8 @@ class Service:
         user = ""
         try:
             user = self.r.GetUser(id)
-        except Exception as e:
-           return None , e
+        except Exception as err:
+           return None , err
         return user , None
 
     # PageSize と PageID を指定して任意の数のユーザを取得
@@ -27,8 +28,8 @@ class Service:
         users = ""
         try:
             users = self.r.GetUsers(psize,pid)
-        except Exception as e:
-            return None , e
+        except Exception as err:
+            return None , err
         return users ,None
 
     # 任意のユーザの情報を更新
@@ -36,22 +37,24 @@ class Service:
         user = ""
         try:
             user = self.r.UpdateUser(uid,name,password,email)
-        except Exception as e:
-            print(e)
-        return user
+        except Exception as err:
+            return None , err
+        return user , None
 
     # 任意のユーザを削除
     def DeleteUser(self, uid:str):
         user = ""
         try:
             user = self.r.DeleteUser(uid)
-        except Exception as e:
-            print(e)
+        except Exception as err:
+            return err
+        return None
             
     # ユーザの全削除
     def DeleteAllUsers(self):
         user = ""
         try:
             user = self.r.DeleteAllUsers()
-        except Exception as e:
-            print(e)
+        except Exception as err:
+            return err
+        return None
