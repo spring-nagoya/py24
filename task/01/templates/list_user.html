@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="jp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ユーザ一覧</title>
+</head>
+<body>
+    <h2>{{msg}}</h2>
+    <button id="create_user">ユーザ作成</button>
+    <button id="all_delete">ユーザ全削除</button>
+    <table>
+        <tr>
+            <td>ユーザID</td>
+            <td>ユーザ名</td>
+            <td>メールアドレス</td>
+            <td>パスワード</td>
+            <td>作成日時</td>
+            <td>詳細</td>
+        </tr>
+        {%for user in users%}
+        <tr>
+            <td>{{user[0]}}</td>
+            <td>{{user[1]}}</td>
+            <td>{{user[2]}}</td>
+            <td>***</td>
+            <td>{{user[3]}}</td>
+            <td><a href="/users/{{user[0]}}">詳細</a></td>
+        </tr>
+        {%endfor%}
+    </table>
+
+    <style>
+        table {
+            border-collapse: collapse;
+        }
+
+        table, th, td {
+            border: 1px solid black;
+        }
+    </style>
+
+    <script>
+        const create_user = document.getElementById('create_user');
+        const delete_user = document.getElementById('all_delete');
+        
+        create_user.addEventListener('click', () => {
+            location.href = '/create_user';
+        });
+
+
+        delete_user.addEventListener('click', () => {
+            fetch('/users', {
+                method: 'DELETE',
+            }).then((res) => {
+                switch (res.status) {
+                    case 200:
+                        alert("ユーザ全削除しました。");
+                        location.href = '/users?page_size=10&page_id=1';
+                        break;
+                    default:
+                        alert("ユーザ全削除失敗しました。");
+                        location.href = '/users?page_size=10&page_id=1';
+                        break;
+                }
+            });
+        });
+    </script>
+</body>
+</html>

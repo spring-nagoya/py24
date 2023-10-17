@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="jp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PY23課題01</title>
+</head>
+<body>
+    <h1>【注意】この構成はかなり過剰な設計をしています</h1>
+
+    <h2 id="result"></h2>
+
+    <button id="create_user">ユーザ作成</button>
+    <button id="users">ユーザ一覧</button>
+
+    <script>
+        const result = document.getElementById('result');
+        const create_user = document.getElementById('create_user');
+        const users = document.getElementById('users');
+
+        create_user.addEventListener('click', () => {
+            location.href = '/create_user';
+        });
+
+        users.addEventListener('click', () => {
+            location.href = '/users?page_size=10&page_id=1';
+        });
+
+        delete_user.addEventListener('click', () => {
+            location.href = '/delete_user';
+        });
+
+        window.onload = () => {
+            const url = new URL(location.href);
+            const message = url.searchParams.get('result');
+            if (message) {
+                result.innerText = message;
+            }
+        }
+    </script>
+</body>
+</html>

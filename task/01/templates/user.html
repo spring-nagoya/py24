@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="jp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <title>{{user[1]}}</title>
+</head>
+<body>
+    <h2>{{user[1]}}</h2>
+    <table>
+        <tr>
+            <td>ユーザID</td>
+            <td>{{user[0]}}</td>
+        </tr>
+        <tr>
+            <td>ユーザ名</td>
+            <td>{{user[1]}}</td>
+        </tr>
+        <tr>
+            <td>メールアドレス</td>
+            <td>{{user[2]}}</td>
+        </tr>
+        <tr>
+            <td>パスワード</td>
+            <td>{{user[3]}}</td>
+        </tr>
+        <tr>
+            <td>作成日時</td>
+            <td>{{user[4]}}</td>
+        </tr>
+    </table>
+    <button id="delete_user">ユーザ削除</button>
+    <a href="/users?page_size=10&page_id=1">ユーザ一覧に戻る</a>
+    
+    <style>
+        table {
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+    </style>
+
+    <script>
+        const delete_user = document.getElementById('delete_user');
+        const uid = location.href.split('/').pop();
+        delete_user.addEventListener('click', () => {
+            fetch('/users/'+uid, {
+                method: 'DELETE',
+            }).then((res) => {
+                switch (res.status) {
+                    case 200:
+                        alert('ユーザを削除しました');
+                        location.href = '/users?page_size=10&page_id=1';
+                        break;
+                    default:
+                        alert('ユーザの削除に失敗しました');
+                        location.href = '/users?page_size=10&page_id=1';
+                        break;
+                }
+            })
+        });
+    </script>
+</body>
+</html>

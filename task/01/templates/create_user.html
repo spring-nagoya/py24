@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="jp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ユーザ作成</title>
+</head>
+<body>
+    <h2>{{msg}}</h2>
+    <form action="/users" method="post">
+        <table>
+            <tr>
+                <td>名前</td>
+                <td><input type="text" name="name" id="name" placeholder="name"></td>
+            </tr>
+            <tr>
+                <td>パスワード</td>
+                <td><input type="password" name="password" id="password" placeholder="password"></td>
+            </tr>
+            <tr>
+                <td>Email</td>
+                <td><input type="email" name="email" id="email" placeholder="email"></td>
+            </tr>
+            <tr>
+                <td colspan="2"><input type="submit" value="作成"></td>
+            </tr>
+        </table>
+    </form>   
+    <a href="/users?page_size=10&page_id=1">ユーザ一覧に戻る</a>
+</body>
+</html>
