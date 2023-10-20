@@ -32,12 +32,12 @@ class Handler:
             self.logger.ERROR(err)
             return render_template("list_user.html",users="" ,msg="不正なリクエスト")
         
-        id ,err = Atoi(req.args.get("id"))
+        pid ,err = Atoi(req.args.get("id"))
         if err != nil:
             self.logger.ERROR(err)
             return render_template("list_user.html",users="" ,msg="不正なリクエスト")
        
-        users ,err = self.s.ListUser(size,(id - 1) * size)
+        users ,err = self.s.ListUser(size,(pid - 1) * size)
         if err != nil:
             self.logger.ERROR(err)
             return render_template("list_user.html",users="" ,msg="ユーザ取得に失敗しました")
@@ -51,19 +51,25 @@ class Handler:
         return render_template("user.html",user=user ,msg="")
     
     def DeleteUser(self, uid:int):
-        if self.s.DeleteUser(uid) != nil:
+        err = self.s.DeleteUser(uid)
+        if err != nil:
             self.logger.ERROR(err)
             return jsonify({"message":"ユーザ削除に失敗しました"}),500
         return jsonify({"message":"ユーザを削除しました"}),200
 
     def DeleteAllUser(self):
-        if self.s.DeleteAllUsers() != nil:
+        err = self.s.DeleteAllUsers()
+        if  err != nil:
             self.logger.ERROR(err)
             return jsonify({"message":"ユーザ削除に失敗しました"}),500
         return jsonify({"message":"ユーザを削除しました"}),200
+    
+    
 
 def Atoi(s :str) -> (int,Exception):
     try:
         return int(s),nil
-    except Exception as err:
+    except ValueError as err:
+        return 0,err
+    except TypeError as err:
         return 0,err

@@ -32,29 +32,20 @@ class Service:
             return None , err
         return users ,None
 
-    # 任意のユーザの情報を更新
-    def UpdateUser(self, uid:str, name: str, password: str ,email :str):
-        user = ""
-        try:
-            user = self.r.UpdateUser(uid,name,password,email)
-        except Exception as err:
-            return None , err
-        return user , None
-
     # 任意のユーザを削除
-    def DeleteUser(self, uid:str):
+    def DeleteUser(self, uid:str) -> Exception:
         user = ""
         try:
-            user = self.r.DeleteUser(uid)
+            self.r.DeleteUser(uid)
         except Exception as err:
             return err
         return None
             
     # ユーザの全削除
-    def DeleteAllUsers(self):
+    def DeleteAllUsers(self) -> Exception:
         user = ""
         try:
-            user = self.r.DeleteAllUsers()
+            self.r.DeleteAllUsers()
         except Exception as err:
             return err
         return None

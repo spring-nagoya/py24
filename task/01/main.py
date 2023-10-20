@@ -31,7 +31,8 @@ GET = "GET"
 POST = "POST"
 DELETE = "DELETE"
 ERROR_INVALID_METHOD = "不正なメソッドです"
-# 
+
+
 app = Flask(__name__)
 app.config["JSON_AS_ASCII"] = False
 l = Logger("./log/log.txt",0)

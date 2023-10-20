@@ -1,7 +1,6 @@
-import mysql.connector
+import mysql.connector 
 import datetime
 from env import Env
-from logger import Logger
 
 # 初期化段階でDBセッションを作る
 class Repository:
@@ -16,7 +15,7 @@ class Repository:
             passwd=self.e.DBpass,
             db=self.e.DBname,
         )
-        except Exception as err:
+        except mysql.connector.Error as err:
             self.logger.ERROR(err)
             exit(1)
         self.logger.INFO("DB接続完了")
@@ -26,9 +25,9 @@ class Repository:
         self.logger.INFO("DB接続終了")
         
     # ユーザの単一取得
-    def GetUser(self,id):
+    def GetUser(self,uid):
         with self.conn.cursor() as cur:
-            cur.execute("SELECT * FROM users WHERE id = %s", (id,))
+            cur.execute("SELECT * FROM users WHERE id = %s", (uid,))
             user = cur.fetchone()
             self.logger.DEBUG("ユーザ取得完了")
         return user
