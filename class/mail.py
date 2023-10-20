@@ -1,8 +1,8 @@
-from flask import *
-from logger import *
+from flask import Flask, render_template, request
+from logger import Logger, LOG_DEBUG
 # from sendmail import *
 
-l = Logger('.log/log.txt', 0)
+l = Logger('.log/log.txt', LOG_DEBUG)
 app = Flask(__name__)
 
 @app.route('/')
@@ -11,12 +11,12 @@ def index():
 
 @app.route('/check', methods=['POST'])
 def send_mail():
-    fromAddress = request.form.get('from')
-    toAddress = request.form.get('to')
-    subject = request.form.get('subject')
-    message = request.form.get('message')
+    From = request.form.get('From')
+    To = request.form.get('To')
+    Subject = request.form.get('Subject')
+    Message = request.form.get('Message')
     
-    l.DEBUG("fromAddress={} ,toAddress={} ,subject={} ,message={}".format(fromAddress,toAddress,subject,message))
+    l.DEBUG("fromAddress={} ,toAddress={} ,subject={} ,message={}".format(From,To,Subject,Message))
     
     return render_template('sendmail.html')
     
