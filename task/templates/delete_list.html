@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <table>
+        <th>ID</th>
+        <th>name</th>
+        <th>PASSWORD</th>
+        <th>MAILADDRESS</th>
+        <th>削除</th>
+        {% for record in records %}
+        <tr>
+            <td>{{ record[0] }}</td>
+            <td>{{ record[1] }}</td>
+            <td>{{ record[2] }}</td>
+            <td>{{ record[3] }}</td>
+            <td><a href="/delete/?id={{record[0]}}">削除</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+
+</html>
