@@ -69,12 +69,13 @@ def delete():
 def create():
     conn = ""
     cursor = ""
+    id = request.form["id"]
+    name = request.form["name"]
+    password = request.form["password"]
+    email = request.form["email"]
     # IDをserial型にしているので、idは自動採番される
-    sql = "INSERT INTO T_sample (name, password, email) VALUES (%s, %s, %s);", (name, password, email)
+    sql = "INSERT INTO T_sample (id, name, password, email) VALUES (%s, %s, %s, %s);", (id, name, password, email)
     try:
-        name = request.form.get("name")
-        password = request.form.get("password")
-        email = request.form.get("email")
         conn = conn_db()
         cursor = conn.cursor()
         cursor.execute(sql)

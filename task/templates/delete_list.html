@@ -9,11 +9,16 @@
 
 <body>
     <table>
-        <th>ID</th>
-        <th>name</th>
-        <th>PASSWORD</th>
-        <th>MAILADDRESS</th>
-        <th>削除</th>
+        <tr>
+            <th>データ一覧</th>
+        </tr>
+        <tr>
+            <th>ID</th>
+            <th>name</th>
+            <th>PASSWORD</th>
+            <th>MAILADDRESS</th>
+            <th>削除</th>
+        </tr>
         {% for record in records %}
         <tr>
             <td>{{ record[0] }}</td>
@@ -23,6 +28,24 @@
             <td><a href="/delete/?id={{record[0]}}">削除</a></td>
         </tr>
         {% endfor %}
+        <tr>
+            <th>データ追加</th>
+        </tr>
+        <tr>
+            <th>ID</th>
+            <th>名前</th>
+            <th>パスワード</th>
+            <th>メールアドレス</th>
+        </tr>
+        <tr>
+            <form action="/create/" method="post">
+                <td><input type="text" name="id"></td>
+                <td><input type="text" name="name"></td>
+                <td><input type="password" name="password"></td>
+                <td><input type="text" name="email"></td>
+                <td><input type="submit" value="追加"></td>
+            </form>
+        </tr>
     </table>
 </body>
 
