@@ -1,19 +1,43 @@
-from flask import Flask, render_template, request, redirect, url_for, send_from_directory
+from flask import (
+    Flask,
+    render_template,
+    request,
+    redirect,
+    url_for,
+    send_from_directory,
+)
 import os
 
 app = Flask(__name__)
 
-@app.route('/upload/', method = ['GET', 'POST'])
+
+UPLOAD_FOLDER = "static/img"
+
+
+@app.route("/upload", methods=["GET", "POST"])
 def upload():
-  
-  if request.method == 'GET':
-    return render_template('upload.html')
-  
-  elif request.method == 'POST':
-    f = request.files['file']
-    f.save(os.path.join("./static/img", f.filename))
-    return redirect(url_for('uploaded_file', filename = f.filename))
-  
-@app.route('/uploaded_file/<string:filename>')
-def uploaded_file(filename):
-  return render_template('uploaded_file.html', filename = filename)
+    if request.method == "GET":
+        return render_template("upload.html")
+
+    elif request.method == "POST":
+        file = request.files["file"]
+
+        file.save(os.path.join(UPLOAD_FOLDER, file.filename))
+
+        return redirect(url_for("uploaded_file", file_name=file.filename))
+
+
+@app.route("/uploaded_file/<string:file_name>")
+def uploaded_file(file_name):
+    file_path = os.path.join(UPLOAD_FOLDER, file_name)
+
+    return render_template("uploaded_file.html", filename=file_path)
+
+
+@app.route("/static/img/<string:file_name>")
+def send_img(file_name):
+    return send_from_directory(UPLOAD_FOLDER, file_name)
+
+
+if __name__ == "__main__":
+    app.run(debug=True, host="0.0.0.0", port=8080)

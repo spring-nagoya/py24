@@ -1,14 +1,26 @@
 <!DOCTYPE html>
-<html lang="ja">
+
+<html lang="jp">
+
 <head>
+
   <meta charset="UTF-8">
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+
+  <title>File upload</title>
+
 </head>
+
 <body>
-  <form action="index.html" method="post" enctype="multipart/form-data">
-    <input type="file" name="file-upload" id="file-upload">
-    <input type="submit" value="アップロード">
+
+  <form action="/upload" method="post" enctype="multipart/form-data">
+
+    <input type="file" name="file" id="file">
+
+    <input type="submit" value="送信">
+
   </form>
 </body>
+
 </html>

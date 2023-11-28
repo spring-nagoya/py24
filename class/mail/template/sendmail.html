@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>メール送信のテスト</title>
+</head>
+
+<body>
+  <h1>メール送信プログラム</h1>
+  <form action="/check/" method="POST">
+    <table>
+      <tr>
+        <td>
+          送信者アドレス:
+        </td>
+        <td>
+          <input type="mail" name="form" value="" required>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          送信先アドレス:
+        </td>
+        <td>
+          <input type="mail" name="to" value="" required>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          件名:
+        </td>
+        <td>
+          <input type="text" name="subject" value="" required>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          送信メッセージ:
+        </td>
+        <td>
+          <textarea name="message" value="" size="50" required></textarea>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <input type="submit">
+        </td>
+      </tr>
+    </table>
+  </form>
+</body>
+
+</html>
