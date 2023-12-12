@@ -1,0 +1,17 @@
+figure {
+  display: flex;
+  width: 30%;
+}
+figure img {
+  width: 100%;
+}
+
+.container {
+  border: 1px solid #232323;
+  border-radius: 4px;
+  display: flex;
+  flex-wrap: wrap;
+}
+.container figure {
+  margin-bottom: 20px;
+}/*# sourceMappingURL=list.css.map */
