@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Azure Translatorを使って翻訳</title>
+</head>
+<body>
+  <form action="translate" method="POST">
+    <div>
+      <label for="fromtext">
+        <input type="text" name="fromtext" id="fromtext" value="">
+      </label>
+    </div>
+    <div>
+      <label for="fromlang">翻訳するテキスト
+        <select name="fromlang" id="fromlang">
+          <option value="en">英語</option>
+          <option value="ja">日本語</option>
+          <option value="es">スペイン語</option>
+          <option value="fr">フランス語</option>
+        </select>
+      </label>
+      <label for="tolang">翻訳後
+        <select name="tolang" id="tolang">
+          <option value="en">英語</option>
+          <option value="ja">日本語</option>
+          <option value="es">スペイン語</option>
+          <option value="fr">フランス語</option>
+        </select>
+      </label>
+    </div>
+  </form>
+</body>
+</html>
