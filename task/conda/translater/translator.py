@@ -1,6 +1,11 @@
 import requests, uuid, json
+import os
+from dotenv import load_dotenv
 
-key = "hide"
+load_dotenv()
+
+
+key = os.environ['key']
 endpoint = "https://api.cognitive.microsofttranslator.com/translate"
 location = "japaneast"
 
