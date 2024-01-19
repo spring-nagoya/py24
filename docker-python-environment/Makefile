@@ -7,7 +7,7 @@ creaet-network:
 bash:
 	docker-compose run --rm python-develop-environment bash
 
-run:
+run: build
 	docker-compose run --rm python-develop-environment python main.py
 	
 .PHONE: build create-network bash run
