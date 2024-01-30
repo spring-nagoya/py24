@@ -1,8 +1,7 @@
 import os
 import time
 from azure.cognitiveservices.vision.computervision import ComputerVisionClient
-# from azure.cognitiveservices.vision.computervision.models import VisualFeatureTypes
-# from azure.cognitiveservices.vision.computervision.models import ComputervisionOcrErrorException
+from azure.cognitiveservices.vision.computervision.models import OperationStatusCodes
 from msrest.authentication import CognitiveServicesCredentials
 
 # read_file is read image file and return binary data
@@ -64,11 +63,15 @@ def main():
         time.sleep(1)
         result = cv_client.get_read_result(operation_id)
 
-    # get result
-    result = result.analyze_result.read_results[0].lines
-    # print result
-    for line in result:
-        print(line.text)
+    if result.status != OperationStatusCodes.succeeded:
+        print("Azure Cognitive Service Error :", result.status)
+        exit(1)
+    
+    # write text file 
+    with open("result.txt", mode="w", encoding="utf-8") as f:
+        for text_results in result.analyze_result.read_results:
+            for line in text_results.lines:
+                f.write(line.text + "\n")
 
 # main function
 if __name__ == "__main__":
