@@ -1,0 +1,23 @@
+Safe Harbor
+This presentation and the information herein (including any information that may be incorporated by reference) is provided for
+informational purposes only and should not be construed as an offer, commitment, promise or obligation on behalf of New Relic, Inc.
+("New Relic") to sell securities or deliver any product, material, code, functionality, or other feature. Any information provided hereby is
+proprietary to New Relic and may not be replicated or disclosed without New Relic's express written permission.
+Such information may contain forward-looking statements within the meaning of federal securities laws. Any statement that is not a
+historical fact or refers to expectations, projections, future plans, objectives, estimates, goals, or other characterizations of future
+events is a forward-looking statement. These forward-looking statements can often be identified as such because the context of the
+statement will include words such as "believes," "anticipates," "expects" or words of similar import.
+Actual results may differ materially from those expressed in these forward-looking statements, which speak only as of the date
+hereof, and are subject to change at any time without notice. Existing and prospective investors, customers and other third parties
+transacting business with New Relic are cautioned not to place undue reliance on this forward-looking information. The achievement
+or success of the matters covered by such forward-looking statements are based on New Relic's current assumptions, expectations,
+and beliefs and are subject to substantial risks, uncertainties, assumptions, and changes in circumstances that may cause the actual
+results, performance, or achievements to differ materially from those expressed or implied in any forward-looking statement. Further
+information on factors that could affect such forward-looking statements is included in the filings New Relic makes with the SEC from
+time to time. Copies of these documents may be obtained by visiting New Relic's Investor Relations website at ir.newrelic.com or the
+SEC's website at www.sec.gov.
+New Relic assumes no obligation and does not intend to update these forward-looking statements, except as required by law. New
+Relic makes no warranties, expressed or implied, in this presentation or otherwise, with respect to the information provided.
+@ 2023 New Relic, Inc. All rights reserved
+new relic.
+3

@@ -9,6 +9,7 @@ services:
       - "8080:8080"
     environment:
       - TZ=Asia/Tokyo
-      - COMPUTER_VISION_SUBSCRIPTION_KEY=816d4add16a84b22b82697bd78515fc0 
+      # ここで環境変数設定する
+      - COMPUTER_VISION_SUBSCRIPTION_KEY=
       - COMPUTER_VISION_REGION=japaneast
       - IMAGE_PATH=
