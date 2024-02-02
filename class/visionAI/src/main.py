@@ -72,6 +72,8 @@ def main():
         for text_results in result.analyze_result.read_results:
             for line in text_results.lines:
                 f.write(line.text + "\n")
+                
+    print("vision AI is success > output : result.txt")
 
 # main function
 if __name__ == "__main__":

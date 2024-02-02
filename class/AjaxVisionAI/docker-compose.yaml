@@ -1,0 +1,17 @@
+version: "3"
+services:
+  python-develop-environment:
+    build: .
+    volumes:
+      - ./src:/app
+    ports:
+      # ここで公開ポート設定する
+      - "8080:8080"
+    networks:
+      - py-default
+  
+networks:
+  py-default:
+    driver: bridge
+    external:
+      true
