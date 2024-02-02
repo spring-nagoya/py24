@@ -9,3 +9,7 @@ class HealthHandler(View):
 class IndexHandler(View):
     def dispatch_request(self):
         return render_template("index.html")
+    
+class AjaxHandler(View):
+    def dispatch_request(self):
+        return "ajax"
