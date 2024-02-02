@@ -7,12 +7,17 @@ POST= "POST"
 PUT= "PUT"
 DELETE= "DELETE"
 
-app = Flask(__name__,template_folder='../../templates')
 
+class Route:
+    def __init__(self):
+        self.app = Flask(__name__,template_folder='../../templates')
+        
+        self.add_api("/",IndexHandler.as_view("index"))
+        self.add_api("/health",HealthHandler.as_view("health"))
+        self.add_api("/call-ajax",AjaxHandler.as_view("ajax"))
 
-def newRoute():
-    return app
-
-app.add_url_rule("/",view_func=IndexHandler.as_view("index"),methods=[GET])
-app.add_url_rule("/health", view_func=HealthHandler.as_view("health"),methods=[GET])
-app.add_url_rule("/call-ajax", view_func=AjaxHandler.as_view("ajax"),methods=[GET,POST])
+    def New(self):
+        return self.app
+    
+    def add_api(self,path,handler):
+        self.app.add_url_rule(path,view_func=handler)

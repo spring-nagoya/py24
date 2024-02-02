@@ -1,15 +1,18 @@
-from flask.views import View
+from flask.views import MethodView
 from flask import request, render_template
 
-class HealthHandler(View):
-    def dispatch_request(self):
-        return "Hello, World!"
+class HealthHandler(MethodView):
+    def get(self):
+        return "ok"
     
     
-class IndexHandler(View):
-    def dispatch_request(self):
+class IndexHandler(MethodView):    
+    def get(self):
         return render_template("index.html")
     
-class AjaxHandler(View):
-    def dispatch_request(self):
-        return "ajax"
+class AjaxHandler(MethodView):    
+    def get(self):
+        return "ajax get"
+    
+    def post(self):
+        return "ajax post"

@@ -1,4 +1,4 @@
-from internal.router.route import newRoute
+from internal.router.route import Route
 import os
 
 DEFAULT_PORT="8080"
@@ -9,7 +9,7 @@ class Server:
         self.port = os.environ.get("PORT", DEFAULT_PORT)
         self.host = os.environ.get("HOST", DEFAULT_HOST)
         
-        self.app = newRoute()
+        self.app = Route().New()
     
     def run(self) -> Exception:
         try:
