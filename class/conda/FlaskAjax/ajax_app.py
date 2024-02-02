@@ -7,8 +7,12 @@ app = Flask(__name__)
 def index():
     return render_template("index.html")
   
-@app.route("/call_ajax", methods=["POST"])
+@app.route("/call_ajax", methods=["GET","POST"])
 def call_ajax():
-    data = request.json
-    print(data)
-    return json.dumps(data)
+    if request.method == "POST":
+        form = request.form["fdata"]
+    if request.method == "GET":
+        return "GET"
+      
+if __name__ == "__main__":
+    app.run(debug=True)
