@@ -1,7 +1,7 @@
-from internal.server.server import server
+from internal.server.server import  Server
 
 def main():
-    err = server()
+    err = Server().run()
     if err != None:
         print("Server Error:", err)
         exit(1)

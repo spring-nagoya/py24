@@ -1,10 +1,9 @@
 from flask import Flask
-
+from internal.handler.handler import ServerHandler
 app = Flask(__name__)
-    
-def initRoute():
+
+
+def newRoute():
     return app
 
-@app.route("/health")
-def health():
-    return "OK"
+app.add_url_rule("/health", view_func=ServerHandler.as_view("health"))
