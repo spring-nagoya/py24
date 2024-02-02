@@ -1,2 +1,3 @@
 # ここに必要なパッケージを書いていく
 azure-cognitiveservices-vision-computervision
+flask
