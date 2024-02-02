@@ -15,4 +15,6 @@ class AjaxHandler(MethodView):
         return "ajax get"
     
     def post(self):
+        # get form data from request
+        form_data = request.form.get
         return "ajax post"
