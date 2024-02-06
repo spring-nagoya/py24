@@ -10,6 +10,6 @@ services:
     environment:
       - TZ=Asia/Tokyo
       # ここで環境変数設定する
-      - COMPUTER_VISION_SUBSCRIPTION_KEY=ea32fb54110a47fc9a9ccc3be06bd2eb
+      - COMPUTER_VISION_SUBSCRIPTION_KEY=
       - COMPUTER_VISION_REGION=japaneast
       - IMAGE_PATH=
