@@ -16,18 +16,20 @@
             frmData.append('fdata',$('#fdata').val());
             //ajax実行
             $.ajax({
-                url: '{{ url_for("cal_ajax") }}',
+                url: '{{ url_for("call_ajax") }}',
                 type: 'post',
                 data: frmData,
+                processData: false,
             })
-            .done(function(){
-
+            .done((data) => {
+                console.log('done');
+                console.log(data);
             })
-            .fail(function(){
-
+            .fail((xhr) => {
+                console.log('fail');
             })
-            .always(function(){
-                
+            .always((xhr,data) => {
+                console.log('always');
             });
             
             //submitイベントを停止させる
@@ -37,9 +39,9 @@
 </head>
 <body>
     <div id="inputForm">
-        <form action="/call_ajax" method="get" onsubmit="return fncSubmit()">
+        <form action="{{ url_for('call_ajax') }}" method="get" onsubmit="return fncSubmit()">
             <input type="text" id="fdata">
-            <input type="submit" value="">
+            <input type="submit" value="送信">
         </form>
     </div>
     <div id="outputForm">
