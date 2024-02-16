@@ -1,26 +1,32 @@
-from flask import Flask, request, render_template, jsonify
+# ajax_app.py  flask + ajax
+
+from flask import Flask,render_template,request,jsonify
 import json
 
 app = Flask(__name__)
 
-
 @app.route("/")
 def index():
-    return render_template("index.html")
+    #テンプレート(index.html)を読み込む
+    return render_template('index.html')
 
-
-@app.route("/call_ajax", methods=["GET", "POST"])
+@app.route("/call_ajax", methods=['GET','POST'])
 def call_ajax():
     if request.method == "POST":
-        form_data = request.form.get("fdata")
-        data = {"key": form_data}
-        return jsonify(data)
-    
-    # if request.method == "GET":
-        # return "GET"
-    else:
-        return jsonify({"test": "get-test"})
+        #formデータからの受け取り
 
+        # fdata:ajaxで設定した名前
+        # form_data = request.form.get('fdata')
+        form_data = request.form['fdata']
+        print(form_data)
+
+        # 受け取りデータの加工
+        data = { "key" : form_data }
+        # json形式で戻す
+        return jsonify(data)
+    else:
+        return jsonify({"test":"get-test"})
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run()
+
