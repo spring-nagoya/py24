@@ -16,8 +16,8 @@ def call_ajax():
         #formデータからの受け取り
 
         # fdata:ajaxで設定した名前
-        # form_data = request.form.get('fdata')
-        form_data = request.form['fdata']
+        form_data = request.form.get('fdata')
+        # form_data = request.form['fdata']
         print(form_data)
 
         # 受け取りデータの加工

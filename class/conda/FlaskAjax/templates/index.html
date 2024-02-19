@@ -10,14 +10,15 @@
             function fncSubmit(){
                 //入力データを渡す準備
                 var frmData = new FormData();
-                frmData.append("fdata",$('#fdata').val());
-
+                frmData.append('fdata',$('#fdata').val());
+                console.log(frmData);
                 //ajax実行
                 $.ajax({
                     url: '/call_ajax',
                     type:'POST',
                     data: frmData,
                     processData: false,
+                    contentType: false,
                 })
                 .done(function(data){
                     console.log("done");
@@ -25,7 +26,6 @@
                     var data_str = JSON.stringify(data);
                     console.log(data_str);
                     var data_json = JSON.parse(data_str);
-                    console.log(data_json);
                     var strWrap = data_json['key'];
                     $('#results').html(strWrap);
                 })
@@ -44,11 +44,11 @@
     <body>
         <div id="inputForm">
             <form method="post" onsubmit="return fncSubmit()">
-                <input type="text" id="fdata" name="fdata"/>
+                <input type="text" id="fdata"/>
                 <input type="submit" />
             </form>
         </div>
-        <div id="outpuForm">
+        <div id="outputForm">
             <div id="results"></div>
         </div>
     </body>
