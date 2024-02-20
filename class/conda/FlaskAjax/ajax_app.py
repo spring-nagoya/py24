@@ -2,6 +2,7 @@
 
 from flask import Flask,render_template,request,jsonify
 import json
+import mysql.connector
 
 app = Flask(__name__)
 
@@ -16,7 +17,10 @@ def call_ajax():
         #formデータからの受け取り
 
         # fdata:ajaxで設定した名前
-        form_data = request.form.get('fdata')
+        json_data = request.get_json(force=True)
+        print(json_data["fdata"])
+        form_data = json_data["fdata"]
+        # form_data = request.form.get('fdata')
         # form_data = request.form['fdata']
         print(form_data)
 

@@ -9,16 +9,19 @@
         <script>
             function fncSubmit(){
                 //入力データを渡す準備
-                var frmData = new FormData();
-                frmData.append('fdata',$('#fdata').val());
+                //var frmData = new FormData();
+                //frmData.append('fdata',$('#fdata').val());
+                var frmData = { "fdata": $('#fdata').val()};
                 console.log(frmData);
                 //ajax実行
                 $.ajax({
                     url: '/call_ajax',
                     type:'POST',
-                    data: frmData,
+                    data: JSON.stringify(frmData),
+                    dataType: 'json',
                     processData: false,
-                    contentType: false,
+                    //contentType: false,
+                    contentType: 'application/json',
                 })
                 .done(function(data){
                     console.log("done");
