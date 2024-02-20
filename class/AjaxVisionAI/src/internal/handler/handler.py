@@ -1,5 +1,5 @@
 from flask.views import MethodView
-from flask import request, render_template
+from flask import request, render_template, jsonify
 
 class HealthHandler(MethodView):
     def get(self):
@@ -11,10 +11,14 @@ class IndexHandler(MethodView):
         return render_template("index.html")
     
 class AjaxHandler(MethodView):    
-    def get(self):
-        return "ajax get"
-    
     def post(self):
-        # get form data from request
-        form_data = request.form.get
-        return "ajax post"
+        
+        reqBody = request.form.get("fdata")
+        print(reqBody)
+        
+        resp = {"key":reqBody}
+        
+        return jsonify(resp)
+    
+    def get(self):
+        return jsonify({"test":"get"})

@@ -3,9 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Index</title>
+    <title>Flask + ajax</title>
+    <!-- ajax起動のため、jQueryの読み込み -->
+    <!-- <script src="/static/js/jquery/jquery-3.6.4.js"></script> -->
+    <script src="{{ url_for('static', filename='js/jquery/jquery-3.6.4.js')}} "></script>
+    <!-- scriptタグでajax実行 -->
+    <!-- 起動パス:/call_ajax -->
+    <script>
+        function fncSubmit(){
+            //入力データを渡す準備
+            var formData = new FormData();
+            formData.append("fdata",$("#in_val").val())
+            //ajax実行
+            $.ajax({
+                url: "/call_ajax",
+                type: 'post',
+                data: frmData, 
+                processData: false,
+            })
+            .done(function(data){
+
+                var data_str =JSON.stringify(data);
+                console.log(data_str);
+
+                var data_json = JSON.parse(data_str);
+                console.log(data_json);
+
+                $('#results').html("data:",data_json["key"]);
+            })
+            .fail(function(){
+
+            })
+            .always(function(){
+                
+            });
+            
+            return false;
+        }
+    </script>
 </head>
 <body>
-    Hello World
+    <div id="inputForm">
+        <form action="/call_ajax" method="post" onsubmit="return fncSubmit()">
+            <input type="text" id="in_val">
+            <input type="submit" value="submit">
+        </form>
+    </div>
+    <div id="outputForm">
+        <div id="results"></div>
+    </div>
 </body>
 </html>
