@@ -1,29 +1,30 @@
 <!DOCTYPE html>
 <html lang="ja">
-    <head>
-        <meta charset="UTF-8">
-        <title>Flask_ajax</title>
-        <script src="{{ url_for('static',filename='js/jquery/jquery-3.6.4.js' ) }}"></script>
-        <!-- Scriptタグでajax実行 -->
-        <!--  起動パス：/call_ajax -->
-        <script>
-            function fncSubmit(){
-                //入力データを渡す準備
-                //var frmData = new FormData();
-                //frmData.append('fdata',$('#fdata').val());
-                var frmData = { "fdata": $('#fdata').val()};
-                console.log(frmData);
-                //ajax実行
-                $.ajax({
-                    url: '/call_ajax',
-                    type:'POST',
-                    data: JSON.stringify(frmData),
-                    dataType: 'json',
-                    processData: false,
-                    //contentType: false,
-                    contentType: 'application/json',
-                })
-                .done(function(data){
+
+<head>
+    <meta charset="UTF-8">
+    <title>Flask_ajax</title>
+    <script src="{{ url_for('static',filename='js/jquery/jquery-3.6.4.js' ) }}"></script>
+    <!-- Scriptタグでajax実行 -->
+    <!--  起動パス：/call_ajax -->
+    <script>
+        function fncSubmit() {
+            //入力データを渡す準備
+            //var frmData = new FormData();
+            //frmData.append('fdata',$('#fdata').val());
+            var frmData = { "fdata": $('#fdata').val() };
+            console.log(frmData);
+            //ajax実行
+            $.ajax({
+                url: '/call_ajax',
+                type: 'POST',
+                data: JSON.stringify(frmData),
+                dataType: 'json',
+                processData: false,
+                //contentType: false,
+                contentType: 'application/json',
+            })
+                .done(function (data) {
                     console.log("done");
                     console.log(data);
                     var data_str = JSON.stringify(data);
@@ -32,27 +33,29 @@
                     var strWrap = data_json['key'];
                     $('#results').html(strWrap);
                 })
-                .fail(function(xhr){
+                .fail(function (xhr) {
                     console.log("fail");
                 })
-                .always(function(xhr,data){
+                .always(function (xhr, data) {
                     console.log("always");
                 });
 
-                //submitイベントを停止させる
-                return false;
-            }
-        </script>
-    </head>
-    <body>
-        <div id="inputForm">
-            <form method="post" onsubmit="return fncSubmit()">
-                <input type="text" id="fdata"/>
-                <input type="submit" />
-            </form>
-        </div>
-        <div id="outputForm">
-            <div id="results"></div>
-        </div>
-    </body>
+            //submitイベントを停止させる
+            return false;
+        }
+    </script>
+</head>
+
+<body>
+    <div id="inputForm">
+        <form method="post" onsubmit="return fncSubmit()">
+            <input type="text" id="fdata" />
+            <input type="submit" />
+        </form>
+    </div>
+    <div id="outputForm">
+        <div id="results"></div>
+    </div>
+</body>
+
 </html>
