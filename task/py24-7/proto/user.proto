@@ -10,25 +10,25 @@ import "google/api/annotations.proto";
 
 service UserService {
     rpc GetUsers(FindUserRequest) returns (Users) {
-        option(google.api.http) = {
+        option (google.api.http) = {
             get: "/users"
         };
     }
 
     rpc CreateUser(CreateUserRequest) returns (User) {
-        option(google.api.http) = {
+        option (google.api.http) = {
             post: "/users"
         };
     }
 
     rpc DeleteUsers(google.protobuf.Empty) returns (Users) {
-        option(google.api.http) = {
+        option (google.api.http) = {
             delete: "/users"
         };
     }
 
     rpc DeleteUser(DeleteUserRequest) returns (User) {
-        option(google.api.http) = {
+        option (google.api.http) = {
             delete: "/users/{id}"
         };
     }   
@@ -42,7 +42,7 @@ message CreateUserRequest {
     string name = 1;
     uint32 age = 2;
 }
- 
+
 message DeleteUserRequest {
     string id = 1;
 }
