@@ -31,7 +31,25 @@
                     console.log(data_str);
                     var data_json = JSON.parse(data_str);
                     var strWrap = data_json['key'];
-                    $('#results').html(strWrap);
+                    //$('#results').html(strWrap);
+                    let res = "";
+                    if (strWrap.length > 0) {
+
+                        //res += strWrap[i] + "<br>";
+                        res += "<table>";
+                        strWrap.forEach( (row) =>{
+                            res += "<tr>";
+                            res += "<td>" + row.name + "</td>";
+                            res += "<td>" + row.mail + "</td>";
+                            res += "<td>" + row.age + "</td>";
+                            res += "</tr>";
+                        });
+                        res += "</table>";
+
+                    } else {
+                        res = "データなし"
+                    };
+                    $('#results').html("data:" + res);
                 })
                 .fail(function (xhr) {
                     console.log("fail");

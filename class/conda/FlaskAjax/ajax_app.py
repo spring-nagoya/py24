@@ -11,7 +11,7 @@ def connect_db():
         host = "127.0.0.1",
         user = "root",
         password = "Passw0rd",
-        db = "2023py24db",
+        db = "2023js23db",
     )
     return conn
 
@@ -34,6 +34,7 @@ def call_ajax():
         sql = " select * from user where name like '%"+form_data+"%';"
         try:
             conn = connect_db()
+            print(sql)
             cursor = conn.cursor(dictionary=True)
             cursor.execute(sql)
             rows = cursor.fetchall()
@@ -51,7 +52,7 @@ def call_ajax():
         print(form_data)
 
         # 受け取りデータの加工
-        data = { "key" : form_data }
+        data = { "key" : ret_data }
         # json形式で戻す
         return jsonify(data)
     else:
