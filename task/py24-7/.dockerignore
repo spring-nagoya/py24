@@ -70,3 +70,10 @@ target/
 
 #Ipython Notebook
 .ipynb_checkpoints
+
+# mysql
+.docker/mysql/*
+
+# protos
+proto
+google/*

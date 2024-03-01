@@ -1,0 +1,42 @@
+version: "3.7"
+services:
+  mysql:
+    build: .docker/mysql
+    container_name: py-mysql
+    command: mysqld --character-set-server=utf8 --collation-server=utf8_unicode_ci
+    volumes:
+      - .docker/mysql/data:/var/lib/mysql
+      - .docker/mysql/init.d:/docker-entrypoint-initdb.d
+    environment:
+      - MYSQL_ROOT_PASSWORD=mysql
+      - MYSQL_DATABASE=py24_7_db
+      - MYSQL_USER=user
+      - MYSQL_PASSWORD=password
+    ports:
+      - "3306:3306"
+    networks:
+      - py-default
+
+  api:
+    build:
+      context: .
+      dockerfile: .docker/api/Dockerfile
+    container_name: py-api
+    environment:
+      - DB_NAME=py24_7_db
+      - DB_USER=root
+      - DB_PASS=mysql
+      - DB_HOST=mysql
+      - DB_PORT=3306
+    ports:
+      - 8080:8080
+    networks:
+      - py-default
+    depends_on:
+      - mysql
+    
+networks:
+  py-default:
+    driver: bridge
+    external:
+      true
