@@ -2,7 +2,6 @@ import connexion
 import six
 import os
 import uuid
-import json
 import http
 
 from swagger_server.models.rpc_status import RpcStatus  # noqa: E501
