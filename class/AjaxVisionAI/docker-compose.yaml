@@ -12,7 +12,24 @@ services:
     environment:
       - PORT:8080
       - HOST:0.0.0.0
-  
+      - DB_HOST=mysql
+      - DB_PORT=3306
+      - DB_USER=root
+      - DB_PASSWORD=mysql
+      - DB_NAME=python
+    depends_on:
+      - mysql
+    
+  mysql:
+    image: mysql:8.3
+    ports:
+      - "3306:3306"
+    networks:
+      - py-default
+    environment:
+      - MYSQL_ROOT_PASSWORD=mysql
+      - MYSQL_DATABASE=python
+
 networks:
   py-default:
     driver: bridge

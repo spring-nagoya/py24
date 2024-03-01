@@ -12,13 +12,15 @@
     <script>
         function fncSubmit(){
             //入力データを渡す準備
-            var formData = new FormData();
-            formData.append("fdata",$("#in_val").val())
+            var data = $("#in_val").val()
+            var requestData = {"fdata":data};
             //ajax実行
             $.ajax({
                 url: "/call_ajax",
                 type: 'post',
-                data: frmData, 
+                data: requestData,  
+                dataType: 'json',
+                contentType: 'application/json',
                 processData: false,
             })
             .done(function(data){

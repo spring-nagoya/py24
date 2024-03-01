@@ -1,4 +1,5 @@
 from internal.router.route import Route
+from internal.driver.mysql import MySQLConn
 import os
 
 DEFAULT_PORT="8080"
@@ -9,7 +10,16 @@ class Server:
         self.port = os.environ.get("PORT", DEFAULT_PORT)
         self.host = os.environ.get("HOST", DEFAULT_HOST)
         
-        self.app = Route().New()
+        dbconn = MySQLConn(
+            host=os.environ.get("DB_HOST"),
+            port=os.environ.get("DB_PORT"),
+            user=os.environ.get("DB_USER"),
+            passwd=os.environ.get("DB_PASSWORD"),
+            db=os.environ.get("DB_NAME")
+        )
+        dbconn.connect()
+        
+        self.app = Route(dbconn=dbconn).New()
     
     def run(self) -> Exception:
         try:

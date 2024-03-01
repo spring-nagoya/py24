@@ -1,0 +1,58 @@
+syntax = "proto3";
+
+package py24_7_api.v1;
+
+
+option go_package = "py24_7_api/v1";
+
+import "google/protobuf/empty.proto";
+import "google/api/annotations.proto";
+
+service UserService {
+    rpc GetUsers(FindUserRequest) returns (Users) {
+        option(google.api.http) = {
+            get: "/users"
+        };
+    }
+
+    rpc CreateUser(CreateUserRequest) returns (User) {
+        option(google.api.http) = {
+            post: "/users"
+        };
+    }
+
+    rpc DeleteUsers(google.protobuf.Empty) returns (Users) {
+        option(google.api.http) = {
+            delete: "/users"
+        };
+    }
+
+    rpc DeleteUser(DeleteUserRequest) returns (User) {
+        option(google.api.http) = {
+            delete: "/users/{id}"
+        };
+    }   
+}
+
+message FindUserRequest {
+    string name = 1;
+}
+
+message CreateUserRequest {
+    string name = 1;
+    uint32 age = 2;
+}
+ 
+message DeleteUserRequest {
+    string id = 1;
+}
+
+message User {
+    string id = 1;
+    string name = 2;
+    int32 age  =3;
+}
+
+message Users {
+    repeated User users = 1;
+}

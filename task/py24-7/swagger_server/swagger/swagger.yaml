@@ -1,0 +1,139 @@
+---
+swagger: "2.0"
+info:
+  version: "version not set"
+  title: "proto/user.proto"
+tags:
+- name: "UserService"
+consumes:
+- "application/json"
+produces:
+- "application/json"
+paths:
+  /users:
+    get:
+      tags:
+      - "UserService"
+      operationId: "user_service_get_users"
+      parameters:
+      - name: "name"
+        in: "query"
+        required: false
+        type: "string"
+      responses:
+        "200":
+          description: "A successful response."
+          schema:
+            $ref: "#/definitions/v1Users"
+        default:
+          description: "An unexpected error response."
+          schema:
+            $ref: "#/definitions/rpcStatus"
+      x-swagger-router-controller: "swagger_server.controllers.user_service_controller"
+    post:
+      tags:
+      - "UserService"
+      operationId: "user_service_create_user"
+      parameters:
+      - name: "name"
+        in: "query"
+        required: false
+        type: "string"
+      - name: "age"
+        in: "query"
+        required: false
+        type: "integer"
+        format: "int64"
+      responses:
+        "200":
+          description: "A successful response."
+          schema:
+            $ref: "#/definitions/v1User"
+        default:
+          description: "An unexpected error response."
+          schema:
+            $ref: "#/definitions/rpcStatus"
+      x-swagger-router-controller: "swagger_server.controllers.user_service_controller"
+    delete:
+      tags:
+      - "UserService"
+      operationId: "user_service_delete_users"
+      parameters: []
+      responses:
+        "200":
+          description: "A successful response."
+          schema:
+            $ref: "#/definitions/v1Users"
+        default:
+          description: "An unexpected error response."
+          schema:
+            $ref: "#/definitions/rpcStatus"
+      x-swagger-router-controller: "swagger_server.controllers.user_service_controller"
+  /users/{id}:
+    delete:
+      tags:
+      - "UserService"
+      operationId: "user_service_delete_user"
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "string"
+      responses:
+        "200":
+          description: "A successful response."
+          schema:
+            $ref: "#/definitions/v1User"
+        default:
+          description: "An unexpected error response."
+          schema:
+            $ref: "#/definitions/rpcStatus"
+      x-swagger-router-controller: "swagger_server.controllers.user_service_controller"
+definitions:
+  protobufAny:
+    type: "object"
+    properties:
+      '@type':
+        type: "string"
+    additionalProperties: {}
+  rpcStatus:
+    type: "object"
+    properties:
+      code:
+        type: "integer"
+        format: "int32"
+      message:
+        type: "string"
+      details:
+        type: "array"
+        items:
+          $ref: "#/definitions/protobufAny"
+  v1User:
+    type: "object"
+    properties:
+      id:
+        type: "string"
+      name:
+        type: "string"
+      age:
+        type: "integer"
+        format: "int32"
+    example:
+      name: "name"
+      id: "id"
+      age: 0
+  v1Users:
+    type: "object"
+    properties:
+      users:
+        type: "array"
+        items:
+          $ref: "#/definitions/v1User"
+    example:
+      users:
+      - name: "name"
+        id: "id"
+        age: 0
+      - name: "name"
+        id: "id"
+        age: 0
