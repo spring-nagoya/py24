@@ -4,7 +4,7 @@ class MySQLConnection:
     def __init__(self,host,port,name,user,password):
         self.host = host
         self.port = port
-        self.name = name
+        self.database = name
         self.user = user
         self.password = password
 
@@ -14,7 +14,7 @@ class MySQLConnection:
             port = self.port,
             user = self.user,
             password = self.password,
-            database = self.name
+            database = self.database
         )
         return self.connection
     

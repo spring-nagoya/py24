@@ -8,10 +8,18 @@ class UserRepo:
         result = cursor.fetchall()
         return result
 
-    def create_user(self, username, age):
+    def get_user(self,id):
         cursor = self.connection.cursor()
-        cursor.execute("INSERT INTO users (username, age) VALUES (%s, %s)", (username, age))
+        cursor.execute("SELECT * FROM users WHERE id = %s", (id,))
+        result = cursor.fetchall()
+        return result
+
+    def create_user(self,id, name, age):
+        cursor = self.connection.cursor()
+        cursor.execute("INSERT INTO users (id,name, age) VALUES (%s,%s, %s)", (id,name, age))
         self.connection.commit()
+
+        return self.get_user(id)
     
     def delete_user(self, id):
         cursor = self.connection.cursor()
