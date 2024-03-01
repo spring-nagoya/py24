@@ -8,6 +8,12 @@ class UserRepo:
         result = cursor.fetchall()
         return result
 
+    def get_search_user(self,name):
+        cursor = self.connection.cursor()
+        cursor.execute("SELECT * FROM users WHERE name like '%"+name+"%'")
+        result = cursor.fetchall()
+        return result
+        
     def get_user(self,id):
         cursor = self.connection.cursor()
         cursor.execute("SELECT * FROM users WHERE id = %s", (id,))

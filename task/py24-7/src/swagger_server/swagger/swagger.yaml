@@ -35,15 +35,11 @@ paths:
       - "UserService"
       operationId: "user_service_create_user"
       parameters:
-      - name: "name"
-        in: "query"
-        required: false
-        type: "string"
-      - name: "age"
-        in: "query"
-        required: false
-        type: "integer"
-        format: "int64"
+      - in: "body"
+        name: "body"
+        required: true
+        schema:
+          $ref: "#/definitions/v1CreateUserRequest"
       responses:
         "200":
           description: "A successful response."
@@ -108,6 +104,14 @@ definitions:
         type: "array"
         items:
           $ref: "#/definitions/protobufAny"
+  v1CreateUserRequest:
+    type: "object"
+    properties:
+      name:
+        type: "string"
+      age:
+        type: "integer"
+        format: "int64"
   v1User:
     type: "object"
     properties:
