@@ -74,8 +74,8 @@ def user_service_delete_user(id_):  # noqa: E501
     
     return {
         "id": id_,
-        "name": user[1],
-        "age": user[2]
+        "name": user[0][1],
+        "age": user[0][2]
     }
 
 
